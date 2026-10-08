@@ -1,0 +1,7 @@
+build/
+dist/
+lib/*.jar
+src/main/resources/db.properties
+*.class
+.idea/
+nbproject/private/

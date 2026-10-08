@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="12.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.soft.inversiones.magdezis.controller.LoginController">
+   <padding><Insets bottom="30.0" left="35.0" right="35.0" top="30.0" /></padding>
+   <children>
+      <Label text="Inversiones Magdezis" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+      <Label text="Iniciar sesión" style="-fx-font-size: 14px;" />
+      <TextField fx:id="txtCorreo" promptText="Correo electrónico" />
+      <PasswordField fx:id="txtContrasena" promptText="Contraseña" onAction="#onIniciarSesion" />
+      <Button maxWidth="Infinity" onAction="#onIniciarSesion" text="Ingresar" defaultButton="true" />
+      <Button maxWidth="Infinity" onAction="#onIrRegistro" text="Crear una cuenta" />
+   </children>
+</VBox>

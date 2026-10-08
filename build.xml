@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="inversiones-magdezis" default="run" basedir=".">
+    <property file="build.properties"/>
+    <property name="main.class" value="com.soft.inversiones.magdezis.Main"/>
+    <property name="src.dir" value="src/main/java"/>
+    <property name="res.dir" value="src/main/resources"/>
+    <property name="build.dir" value="build/classes"/>
+    <property name="dist.dir" value="dist"/>
+
+    <path id="libs">
+        <fileset dir="lib" includes="*.jar"/>
+        <fileset dir="${javafx.sdk}/lib" includes="*.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"
+               encoding="UTF-8" release="17" classpathref="libs"/>
+        <copy todir="${build.dir}">
+            <fileset dir="${res.dir}"/>
+        </copy>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${main.class}" fork="true">
+            <jvmarg value="--module-path"/>
+            <jvmarg value="${javafx.sdk}/lib"/>
+            <jvmarg value="--add-modules"/>
+            <jvmarg value="javafx.controls,javafx.fxml"/>
+            <classpath>
+                <pathelement path="${build.dir}"/>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/inversiones-magdezis.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+</project>
